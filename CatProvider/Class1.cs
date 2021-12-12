@@ -29,7 +29,7 @@ namespace CatProvider
     }
 
 
-    public class CatDataService : IDisposable
+    public class CatDataService
     {
         private readonly IHttpClientWrapper HttpClient;
         private readonly UriBuilder BaseUrl;
@@ -37,9 +37,9 @@ namespace CatProvider
         public CatDataService(IHttpClientWrapper httpClient, string url)
         {
             HttpClient = httpClient;
-            BaseUrl = new UriBuilder($"{url}/v1/breeds");
+            BaseUrl = new UriBuilder($"{url}/v1/breeds/search");
         }
-        public async Task<List<Breed>> GetBreeds(string q)
+        public async Task<List<Breed>> GetBreedsName(string q)
         {
             BaseUrl.Query = $"q={q}";
 
@@ -49,9 +49,25 @@ namespace CatProvider
             var json = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<List<Breed>>(json);
         }
-        public void Dispose()
+    }
+
+    public class CatDataService2
+    {
+        private readonly IHttpClientWrapper HttpClient;
+        private readonly UriBuilder BaseUrl;
+
+        public CatDataService2(IHttpClientWrapper httpClient, string url)
         {
-            HttpClient.Dispose();
+            HttpClient = httpClient;
+            BaseUrl = new UriBuilder($"{url}/v1/categories");
+        }
+        public async Task<List<Category>> GetBreedsName(string q)
+        {
+            var response = await HttpClient.GetAsync(BaseUrl.ToString());
+            response.EnsureSuccessStatusCode();
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<Category>>(json);
         }
     }
 }
