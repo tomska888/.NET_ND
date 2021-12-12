@@ -62,6 +62,7 @@
     <Compile Include="IHttpClientWrapper.cs" />
     <Compile Include="HttpClientWrapper.cs" />
     <Compile Include="Models\Breed.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -41,5 +41,17 @@ namespace CatProvider
             var json = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<List<Image>>(json);
         }
+
+        public async Task<List<Category>> GetCategory(int limit, int page)
+        {
+            Uri.Path = "v1/categories";
+            Uri.Query = $"limit={limit}&page={page}";
+
+            var response = await _httpClient.GetAsync(Uri.ToString());
+            response.EnsureSuccessStatusCode();
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<Category>>(json);
+        }
     }
 }

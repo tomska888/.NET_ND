@@ -19,8 +19,9 @@ namespace ConsoleApp1
         {
             var httpClient = new HttpClientWrapper();
             var catService = new CatDataService(httpClient);
-            var data = await catService.GetBreed("A");
-            var data2 = await catService.GetImage("thumb");
+            var BreedsList = await catService.GetBreed("A");
+            var Image = await catService.GetImage("thumb");
+            var Category = await catService.GetCategory(1, 2);
         }
     }
 }
