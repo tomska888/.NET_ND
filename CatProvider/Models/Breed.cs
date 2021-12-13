@@ -15,5 +15,8 @@ namespace CatProvider.Models
         public string Description { get; set; }
         [JsonProperty("wikipedia_url")]
         public string WikipediaUrl { get; set; }
+        public string Temperament { get; set; }
+        [JsonProperty("life_span")]
+        public string LifeSpan { get; set; }
     }
 }

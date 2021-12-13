@@ -18,10 +18,22 @@ namespace CatProvider
             _httpClient = httpClient;
             Uri = new UriBuilder("https://api.thecatapi.com");
         }
-        public async Task<List<Breed>> GetBreed(string q)
+        public async Task<List<Breed>> GetBreedSearch(string q)
         {
             Uri.Path = "v1/breeds/search";
             Uri.Query = $"q={q}";
+
+            var response = await _httpClient.GetAsync(Uri.ToString());
+            response.EnsureSuccessStatusCode();
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<Breed>>(json);
+        }
+
+        public async Task<List<Breed>> GetBreedList(int page, int limit)
+        {
+            Uri.Path = "v1/breeds";
+            Uri.Query = $"limit={limit}&page={page}";
 
             var response = await _httpClient.GetAsync(Uri.ToString());
             response.EnsureSuccessStatusCode();
