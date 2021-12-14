@@ -7,11 +7,13 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-[TestMethod()]
-public async Task GetBreedSearchTest()
+public class CatDataServiceTests
 {
-    //arrange
-    var expectedBreedList = new List<Breed>
+    [TestMethod()]
+    public async Task GetBreedSearchTest()
+    {
+        //arrange
+        var expectedBreedList = new List<Breed>
     {
         new Breed() { Id="abys",
             Description="The Abyssinian is easy to care for, and a joy to have in your home. " +
@@ -27,7 +29,7 @@ public async Task GetBreedSearchTest()
             "As a breed, Aegean Cats are rare, although they are numerous on their home islands. " +
             "They are generally friendly toward people and can be excellent cats for families with children.",
             LifeSpan="9 - 12",
-            Name="Aegean", 
+            Name="Aegean",
             Origin="Greece",
             Temperament="Affectionate, Social, Intelligent, Playful, Active",
             WikipediaUrl="https://en.wikipedia.org/wiki/Aegean_cat"},
@@ -50,87 +52,87 @@ public async Task GetBreedSearchTest()
             Temperament="Affectionate, Curious, Intelligent, Interactive, Lively, Playful, Social",
             WikipediaUrl="https://en.wikipedia.org/wiki/American_Curl"},
     };
-    var json = JsonConvert.SerializeObject(expectedBreedList);
+        var json = JsonConvert.SerializeObject(expectedBreedList);
 
-    string url = "https://api.thecatapi.com";
+        HttpResponseMessage httpResponse = new HttpResponseMessage();
+        httpResponse.StatusCode = System.Net.HttpStatusCode.OK;
+        httpResponse.Content = new StringContent(json);
 
-    HttpResponseMessage httpResponse = new HttpResponseMessage();
-    httpResponse.StatusCode = System.Net.HttpStatusCode.OK;
-    httpResponse.Content = new StringContent(json);
+        var mockHttpClientWrapper = new Mock<IHttpClientWrapper>();
+        mockHttpClientWrapper.Setup(t => t.GetAsync(It.IsAny<string>))
+            .ReturnsAsync(httpResponse);
 
-    var mockHttpClientWrapper = new Mock<IHttpClientWrapper>();
-    mockHttpClientWrapper.Setup(t => t.GetAsync(It.Is<string>(s => s.StartsWith(url))))
-        .ReturnsAsync(httpResponse);
+        CatDataService service = new CatDataService(mockHttpClientWrapper.Object);
 
-    CatDataService service = new CatDataService(mockHttpClientWrapper.Object);
+        //act
+        var actualBreedList = await service.GetBreedSearch("Greece");
 
-    //act
-    var actualBreedList = await service.GetBreedSearch("Greece");
+        //assert
+        CollectionAssert.AreEquivalent(expectedBreedList, actualBreedList);
+    }
 
-    //assert
-    CollectionAssert.AreEquivalent(expectedBreedList, actualBreedList);
-}
-
-[TestMethod()]
-public async Task GetImageTest()
-{
-    //arrange
-    var expectedImageList = new List<Image>
+    [TestMethod()]
+    public async Task GetImageTest()
+    {
+        //arrange
+        var expectedImageList = new List<Image>
     {
         new Image() { Id="23v", Url="https://cdn2.thecatapi.com/images/23v.jpg"},
         new Image() { Id="3n1", Url="https://cdn2.thecatapi.com/images/3n1.gif"},
         new Image() { Id="NwMUoJYmT", Url="https://cdn2.thecatapi.com/images/NwMUoJYmT.jpg"},
         new Image() { Id="FGtYc9CUT", Url="https://cdn2.thecatapi.com/images/FGtYc9CUT.jpg"},
     };
-    var json = JsonConvert.SerializeObject(expectedImageList);
+        var json = JsonConvert.SerializeObject(expectedImageList);
 
-    string url = "https://api.thecatapi.com";
+        string url = "https://api.thecatapi.com";
 
-    HttpResponseMessage httpResponse = new HttpResponseMessage();
-    httpResponse.StatusCode = System.Net.HttpStatusCode.OK;
-    httpResponse.Content = new StringContent(json);
+        HttpResponseMessage httpResponse = new HttpResponseMessage();
+        httpResponse.StatusCode = System.Net.HttpStatusCode.OK;
+        httpResponse.Content = new StringContent(json);
 
-    var mockHttpClientWrapper = new Mock<IHttpClientWrapper>();
-    mockHttpClientWrapper.Setup(t => t.GetAsync(It.Is<string>(s => s.StartsWith(url))))
-        .ReturnsAsync(httpResponse);
+        var mockHttpClientWrapper = new Mock<IHttpClientWrapper>();
+        mockHttpClientWrapper.Setup(t => t.GetAsync(It.Is<string>(s => s.StartsWith(url))))
+            .ReturnsAsync(httpResponse);
 
-    CatDataService service = new CatDataService(mockHttpClientWrapper.Object);
+        CatDataService service = new CatDataService(mockHttpClientWrapper.Object);
 
-    //act
-    var actualImageList = await service.GetImage("NwMUoJYmT");
+        //act
+        var actualImageList = await service.GetImage("NwMUoJYmT");
 
-    //assert
-    CollectionAssert.AreEquivalent(expectedImageList, actualImageList);
-}
+        //assert
+        CollectionAssert.AreEquivalent(expectedImageList, actualImageList);
+    }
 
-[TestMethod()]
-public async Task GetCategoryTest()
-{
-    //arrange
-    var expectedCategoryList = new List<Category>
+    [TestMethod()]
+    public async Task GetCategoryTest()
+    {
+        //arrange
+        var expectedCategoryList = new List<Category>
     {
         new Category() { Id="1", Name="hats"},
         new Category() { Id="2", Name="space"},
         new Category() { Id="3", Name="funny"},
         new Category() { Id="4", Name="sunglasses"},
     };
-    var json = JsonConvert.SerializeObject(expectedCategoryList);
+        var json = JsonConvert.SerializeObject(expectedCategoryList);
 
-    string url = "https://api.thecatapi.com";
+        string url = "https://api.thecatapi.com";
 
-    HttpResponseMessage httpResponse = new HttpResponseMessage();
-    httpResponse.StatusCode = System.Net.HttpStatusCode.OK;
-    httpResponse.Content = new StringContent(json);
+        HttpResponseMessage httpResponse = new HttpResponseMessage();
+        httpResponse.StatusCode = System.Net.HttpStatusCode.OK;
+        httpResponse.Content = new StringContent(json);
 
-    var mockHttpClientWrapper = new Mock<IHttpClientWrapper>();
-    mockHttpClientWrapper.Setup(t => t.GetAsync(It.Is<string>(s => s.StartsWith(url))))
-        .ReturnsAsync(httpResponse);
+        var mockHttpClientWrapper = new Mock<IHttpClientWrapper>();
+        mockHttpClientWrapper.Setup(t => t.GetAsync(It.Is<string>(s => s.StartsWith(url))))
+            .ReturnsAsync(httpResponse);
 
-    CatDataService service = new CatDataService(mockHttpClientWrapper.Object);
+        CatDataService service = new CatDataService(mockHttpClientWrapper.Object);
 
-    //act
-    var actualCategoryList = await service.GetCategory(1, 2);
+        //act
+        var actualCategoryList = await service.GetCategory(1, 2);
 
-    //assert
-    CollectionAssert.AreEquivalent(expectedCategoryList, actualCategoryList);
+        //assert
+        CollectionAssert.AreEquivalent(expectedCategoryList, actualCategoryList);
+    }
 }
+
