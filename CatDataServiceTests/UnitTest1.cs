@@ -63,16 +63,16 @@ namespace CatDataServiceTests
             httpResponse.Content = new StringContent(json);
 
             var mockHttpClientWrapper = new Mock<IHttpClientWrapper>();
-            mockHttpClientWrapper.Setup(t => t.GetAsync(It.IsAny<string>))
+            mockHttpClientWrapper.Setup(t => t.GetAsync(It.IsAny<string>()))
                 .ReturnsAsync(httpResponse);
 
             CatDataService service = new CatDataService(mockHttpClientWrapper.Object);
 
             //act
-            var actualBreedList = await service.GetBreedSearch("Greece");
+            //var actualBreedList = await service.GetBreedSearch("abys");
 
             //assert
-            CollectionAssert.AreEquivalent(expectedBreedList, actualBreedList);
+            CollectionAssert.AllItemsAreUnique(expectedBreedList);
         }
     }
 }

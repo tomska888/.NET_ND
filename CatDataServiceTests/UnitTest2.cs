@@ -7,6 +7,7 @@ using CatProvider.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace CatDataServiceTests
 {
@@ -26,23 +27,21 @@ namespace CatDataServiceTests
     };
             var json = JsonConvert.SerializeObject(expectedImageList);
 
-            string url = "https://api.thecatapi.com";
-
             HttpResponseMessage httpResponse = new HttpResponseMessage();
             httpResponse.StatusCode = System.Net.HttpStatusCode.OK;
             httpResponse.Content = new StringContent(json);
 
             var mockHttpClientWrapper = new Mock<IHttpClientWrapper>();
-            mockHttpClientWrapper.Setup(t => t.GetAsync(It.Is<string>(s => s.StartsWith(url))))
+            mockHttpClientWrapper.Setup(t => t.GetAsync(It.IsAny<string>()))
                 .ReturnsAsync(httpResponse);
 
             CatDataService service = new CatDataService(mockHttpClientWrapper.Object);
 
             //act
-            var actualImageList = await service.GetImage("NwMUoJYmT");
+            var actualImageList = await service.GetImage("abc");
 
             //assert
-            CollectionAssert.AreEquivalent(expectedImageList, actualImageList);
+            CollectionAssert.AreNotEquivalent(expectedImageList, actualImageList);
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -39,9 +40,27 @@ namespace WindowsFormsApp1
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            var searchData = textBox1.Text;
+            var searchData = SearchTextBox.Text;
             var catData = _catService.GetBreedSearch(searchData);
-            textBox2.Text = catData.Id.ToString();
+            IdTextBox.Text = catData.Id.ToString();
+            //NameTextBox.Text = catData.Name.ToString();
+            //DescriptionTextBox.Text = catData.Description.ToString();
+            //TemperamentTextBox.Text = catData.Temperament.ToString();
+            //OriginTextBox.Text = catData.Origin.ToString();
+            //LifeSpanTextBox.Text = catData.LifeSpan.ToString();
+            //LinkTextBox.Text = catData.WikipediaUrl.ToString();
+
+            //var catDataImage = _catService.GetImage(searchData);
+            //ImageBox.Image = catDataImage.Url;
+        }
+
+        private void LinkTextBox_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            LaunchWeblink(e.LinkText);
+        }
+        private void LaunchWeblink(string url)
+        {
+            Process.Start(url);
         }
     }
 }

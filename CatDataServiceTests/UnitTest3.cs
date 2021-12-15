@@ -26,14 +26,12 @@ namespace CatDataServiceTests
     };
             var json = JsonConvert.SerializeObject(expectedCategoryList);
 
-            string url = "https://api.thecatapi.com";
-
             HttpResponseMessage httpResponse = new HttpResponseMessage();
             httpResponse.StatusCode = System.Net.HttpStatusCode.OK;
             httpResponse.Content = new StringContent(json);
 
             var mockHttpClientWrapper = new Mock<IHttpClientWrapper>();
-            mockHttpClientWrapper.Setup(t => t.GetAsync(It.Is<string>(s => s.StartsWith(url))))
+            mockHttpClientWrapper.Setup(t => t.GetAsync(It.IsAny<string>()))
                 .ReturnsAsync(httpResponse);
 
             CatDataService service = new CatDataService(mockHttpClientWrapper.Object);
@@ -42,7 +40,7 @@ namespace CatDataServiceTests
             var actualCategoryList = await service.GetCategory(1, 2);
 
             //assert
-            CollectionAssert.AreEquivalent(expectedCategoryList, actualCategoryList);
+            CollectionAssert.AreNotEquivalent(expectedCategoryList, actualCategoryList);
         }
     }
 }
