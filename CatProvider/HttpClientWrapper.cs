@@ -20,10 +20,10 @@ namespace CatProvider
         {
             return await HttpClient.GetAsync(url);
         }
-        //public async Task<HttpResponseMessage> PostAsync(string url)
-        //{
-        //    return await HttpClient.PostAsync(string url, );
-        //}
+        public async Task<HttpResponseMessage> PostAsync(string url, HttpContent content)
+        {
+            return await HttpClient.PostAsync(url, content);
+        }
         public void Dispose()
         {
             HttpClient.Dispose();

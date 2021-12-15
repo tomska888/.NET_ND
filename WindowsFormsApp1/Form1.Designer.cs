@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +43,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.ImageBox = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.SearchButton = new System.Windows.Forms.Button();
             this.IdTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
@@ -53,6 +52,7 @@
             this.OriginTextBox = new System.Windows.Forms.TextBox();
             this.LifeSpanTextBox = new System.Windows.Forms.TextBox();
             this.LinkTextBox = new System.Windows.Forms.RichTextBox();
+            this.ShowFavButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImageBox)).BeginInit();
             this.SuspendLayout();
@@ -64,29 +64,23 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(467, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(466, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
-            this.newToolStripMenuItem.Text = "New";
-            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -95,6 +89,7 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.A)));
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
@@ -133,7 +128,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 126);
+            this.label3.Location = new System.Drawing.Point(244, 74);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 13);
             this.label3.TabIndex = 5;
@@ -142,7 +137,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 152);
+            this.label4.Location = new System.Drawing.Point(12, 128);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 13);
             this.label4.TabIndex = 6;
@@ -169,7 +164,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(32, 230);
+            this.label7.Location = new System.Drawing.Point(30, 233);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(57, 13);
             this.label7.TabIndex = 9;
@@ -177,22 +172,25 @@
             // 
             // ImageBox
             // 
-            this.ImageBox.Location = new System.Drawing.Point(12, 260);
+            this.ImageBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ImageBox.ImageLocation = "";
+            this.ImageBox.Location = new System.Drawing.Point(12, 325);
+            this.ImageBox.MaximumSize = new System.Drawing.Size(1500, 700);
             this.ImageBox.Name = "ImageBox";
             this.ImageBox.Size = new System.Drawing.Size(215, 132);
             this.ImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.ImageBox.TabIndex = 10;
             this.ImageBox.TabStop = false;
             // 
-            // button2
+            // SaveButton
             // 
-            this.button2.Location = new System.Drawing.Point(247, 369);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Save Image";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.SaveButton.Location = new System.Drawing.Point(12, 296);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.TabIndex = 11;
+            this.SaveButton.Text = "Save Image";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // SearchButton
             // 
@@ -222,18 +220,20 @@
             // 
             // DescriptionTextBox
             // 
-            this.DescriptionTextBox.Location = new System.Drawing.Point(93, 123);
+            this.DescriptionTextBox.Location = new System.Drawing.Point(316, 71);
+            this.DescriptionTextBox.Multiline = true;
             this.DescriptionTextBox.Name = "DescriptionTextBox";
             this.DescriptionTextBox.ReadOnly = true;
-            this.DescriptionTextBox.Size = new System.Drawing.Size(134, 20);
+            this.DescriptionTextBox.Size = new System.Drawing.Size(134, 205);
             this.DescriptionTextBox.TabIndex = 15;
             // 
             // TemperamentTextBox
             // 
-            this.TemperamentTextBox.Location = new System.Drawing.Point(93, 149);
+            this.TemperamentTextBox.Location = new System.Drawing.Point(93, 123);
+            this.TemperamentTextBox.Multiline = true;
             this.TemperamentTextBox.Name = "TemperamentTextBox";
             this.TemperamentTextBox.ReadOnly = true;
-            this.TemperamentTextBox.Size = new System.Drawing.Size(134, 20);
+            this.TemperamentTextBox.Size = new System.Drawing.Size(134, 46);
             this.TemperamentTextBox.TabIndex = 16;
             // 
             // OriginTextBox
@@ -254,19 +254,29 @@
             // 
             // LinkTextBox
             // 
-            this.LinkTextBox.Location = new System.Drawing.Point(93, 227);
+            this.LinkTextBox.Location = new System.Drawing.Point(94, 227);
             this.LinkTextBox.Name = "LinkTextBox";
             this.LinkTextBox.ReadOnly = true;
-            this.LinkTextBox.Size = new System.Drawing.Size(134, 24);
+            this.LinkTextBox.Size = new System.Drawing.Size(133, 49);
             this.LinkTextBox.TabIndex = 19;
             this.LinkTextBox.Text = "";
             this.LinkTextBox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.LinkTextBox_LinkClicked);
+            // 
+            // ShowFavButton
+            // 
+            this.ShowFavButton.Location = new System.Drawing.Point(94, 296);
+            this.ShowFavButton.Name = "ShowFavButton";
+            this.ShowFavButton.Size = new System.Drawing.Size(75, 23);
+            this.ShowFavButton.TabIndex = 20;
+            this.ShowFavButton.Text = "Favourites";
+            this.ShowFavButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(467, 404);
+            this.ClientSize = new System.Drawing.Size(466, 486);
+            this.Controls.Add(this.ShowFavButton);
             this.Controls.Add(this.LinkTextBox);
             this.Controls.Add(this.LifeSpanTextBox);
             this.Controls.Add(this.OriginTextBox);
@@ -275,7 +285,7 @@
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.IdTextBox);
             this.Controls.Add(this.SearchButton);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.ImageBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -288,7 +298,6 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximumSize = new System.Drawing.Size(483, 443);
             this.Name = "Form1";
             this.Text = "Cat";
             this.menuStrip1.ResumeLayout(false);
@@ -312,9 +321,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox ImageBox;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.TextBox IdTextBox;
@@ -324,6 +332,7 @@
         private System.Windows.Forms.TextBox OriginTextBox;
         private System.Windows.Forms.TextBox LifeSpanTextBox;
         private System.Windows.Forms.RichTextBox LinkTextBox;
+        private System.Windows.Forms.Button ShowFavButton;
     }
 }
 
