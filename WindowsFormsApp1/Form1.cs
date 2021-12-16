@@ -27,10 +27,17 @@ namespace WindowsFormsApp1
             _catService = new CatDataService(httpClient);
         }
 
-        private async void button2_Click(object sender, EventArgs e)
+        private async void button2_ClickAsync(object sender, EventArgs e)
         {
-            await _catService.SaveFavorites(_catImageId);
-            MessageBox.Show("Image saved to favourites!");
+            if(_catImageId != null)
+            {
+                await _catService.SaveFavorites(_catImageId);
+                MessageBox.Show("Image saved to favourites!");
+            }
+            else
+            {
+                MessageBox.Show("No image!");
+            }
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -73,6 +80,10 @@ namespace WindowsFormsApp1
         private void LaunchWeblink(string url)
         {
             Process.Start(url);
+        }
+
+        private void ShowFavButton_Click(object sender, EventArgs e)
+        {
         }
     }
 }

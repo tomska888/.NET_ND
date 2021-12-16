@@ -23,6 +23,7 @@ namespace ConsoleApp1
             var SreachBreedsList = await catService.GetBreedSearch("a");
             var Image = await catService.GetImage("0j7EpepFB");
             //var Category = await catService.GetCategory(1, 2);
+            var Favourites = await catService.GetFavourites("test");
         }
     }
 }

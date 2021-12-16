@@ -55,7 +55,7 @@ namespace CatProvider
             var httpContent = new StringContent(serializedModel, System.Text.Encoding.UTF8, "application/json");
 
             var response = await _httpClient.PostAsync(Uri.ToString(), httpContent);
-            response.EnsureSuccessStatusCode();
+            //response.EnsureSuccessStatusCode();
         }
 
         public async Task<List<Favourite>> GetFavourites(string subId)
@@ -70,28 +70,28 @@ namespace CatProvider
             return JsonConvert.DeserializeObject<List<Favourite>>(json);
         }
 
-        //public async Task<List<Breed>> GetBreedList(int page, int limit)
-        //{
-        //    Uri.Path = "v1/breeds";
-        //    Uri.Query = $"limit={limit}&page={page}";
+        public async Task<List<Breed>> GetBreedList(int page, int limit)
+        {
+            Uri.Path = "v1/breeds";
+            Uri.Query = $"limit={limit}&page={page}";
 
-        //    var response = await _httpClient.GetAsync(Uri.ToString());
-        //    response.EnsureSuccessStatusCode();
+            var response = await _httpClient.GetAsync(Uri.ToString());
+            response.EnsureSuccessStatusCode();
 
-        //    var json = await response.Content.ReadAsStringAsync();
-        //    return JsonConvert.DeserializeObject<List<Breed>>(json);
-        //}
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<Breed>>(json);
+        }
 
-        //public async Task<List<Category>> GetCategory(int limit, int page)
-        //{
-        //    Uri.Path = "v1/categories";
-        //    Uri.Query = $"limit={limit}&page={page}";
+        public async Task<List<Category>> GetCategory(int limit, int page)
+        {
+            Uri.Path = "v1/categories";
+            Uri.Query = $"limit={limit}&page={page}";
 
-        //    var response = await _httpClient.GetAsync(Uri.ToString());
-        //    response.EnsureSuccessStatusCode();
+            var response = await _httpClient.GetAsync(Uri.ToString());
+            response.EnsureSuccessStatusCode();
 
-        //    var json = await response.Content.ReadAsStringAsync();
-        //    return JsonConvert.DeserializeObject<List<Category>>(json);
-        //}
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<Category>>(json);
+        }
     }
 }
