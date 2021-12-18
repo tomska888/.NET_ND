@@ -39,7 +39,6 @@ namespace WindowsFormsApp1
                 await _catService.SaveFavorites(_catImageId, _catSubId);
                 MessageBox.Show("Image saved!");
             }
-            
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -84,11 +83,6 @@ namespace WindowsFormsApp1
             Process.Start(url);
         }
 
-        private void ShowFavButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private async void ShowAll_ClickAsync(object sender, EventArgs e)
         {
             var catDataList = await _catService.GetBreedList();
@@ -115,7 +109,7 @@ namespace WindowsFormsApp1
             MessageBox.Show("Data Exported");
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private async void ShowFavButton_Click(object sender, EventArgs e)
         {
             var catShowFav = await _catService.GetFavourites();
             dataGridView2.DataSource = catShowFav;
