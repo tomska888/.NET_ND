@@ -38,7 +38,7 @@ namespace CatDataServiceTests
             CatDataService service = new CatDataService(mockHttpClientWrapper.Object);
 
             //act
-            var actualImageList = await service.GetImage("abc");
+            var actualImageList = await service.GetImage("23v");
 
             //assert
             CollectionAssert.AreNotEquivalent(expectedImageList, actualImageList);

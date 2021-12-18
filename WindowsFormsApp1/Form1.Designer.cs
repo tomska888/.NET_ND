@@ -53,13 +53,19 @@
             this.OriginTextBox = new System.Windows.Forms.TextBox();
             this.LifeSpanTextBox = new System.Windows.Forms.TextBox();
             this.LinkTextBox = new System.Windows.Forms.RichTextBox();
-            this.ShowFavButton = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ShowAll = new System.Windows.Forms.Button();
+            this.SaveList = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImageBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -69,7 +75,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(912, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1539, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -101,7 +107,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -198,9 +204,9 @@
             // 
             this.SaveButton.Location = new System.Drawing.Point(286, 473);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.Size = new System.Drawing.Size(160, 23);
             this.SaveButton.TabIndex = 11;
-            this.SaveButton.Text = "Save Image";
+            this.SaveButton.Text = "Save Image To Favourites";
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.button2_ClickAsync);
             // 
@@ -274,16 +280,6 @@
             this.LinkTextBox.Text = "";
             this.LinkTextBox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.LinkTextBox_LinkClicked);
             // 
-            // ShowFavButton
-            // 
-            this.ShowFavButton.Location = new System.Drawing.Point(367, 473);
-            this.ShowFavButton.Name = "ShowFavButton";
-            this.ShowFavButton.Size = new System.Drawing.Size(75, 23);
-            this.ShowFavButton.TabIndex = 20;
-            this.ShowFavButton.Text = "Favourites";
-            this.ShowFavButton.UseVisualStyleBackColor = true;
-            this.ShowFavButton.Click += new System.EventHandler(this.ShowFavButton_Click);
-            // 
             // imageList1
             // 
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
@@ -320,16 +316,67 @@
             this.label10.TabIndex = 23;
             this.label10.Text = "IMAGE:";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(731, 74);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(762, 389);
+            this.dataGridView1.TabIndex = 24;
+            // 
+            // ShowAll
+            // 
+            this.ShowAll.Location = new System.Drawing.Point(731, 35);
+            this.ShowAll.Name = "ShowAll";
+            this.ShowAll.Size = new System.Drawing.Size(75, 23);
+            this.ShowAll.TabIndex = 25;
+            this.ShowAll.Text = "Show all";
+            this.ShowAll.UseVisualStyleBackColor = true;
+            this.ShowAll.Click += new System.EventHandler(this.ShowAll_ClickAsync);
+            // 
+            // SaveList
+            // 
+            this.SaveList.Location = new System.Drawing.Point(812, 35);
+            this.SaveList.Name = "SaveList";
+            this.SaveList.Size = new System.Drawing.Size(75, 23);
+            this.SaveList.TabIndex = 26;
+            this.SaveList.Text = "Save List ";
+            this.SaveList.UseVisualStyleBackColor = true;
+            this.SaveList.Click += new System.EventHandler(this.SaveList_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(731, 558);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(708, 311);
+            this.dataGridView2.TabIndex = 27;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(731, 529);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.ClientSize = new System.Drawing.Size(912, 1006);
+            this.ClientSize = new System.Drawing.Size(1539, 1006);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.SaveList);
+            this.Controls.Add(this.ShowAll);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.ShowFavButton);
             this.Controls.Add(this.LinkTextBox);
             this.Controls.Add(this.LifeSpanTextBox);
             this.Controls.Add(this.OriginTextBox);
@@ -354,9 +401,12 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Cat";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImageBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -386,11 +436,15 @@
         private System.Windows.Forms.TextBox OriginTextBox;
         private System.Windows.Forms.TextBox LifeSpanTextBox;
         private System.Windows.Forms.RichTextBox LinkTextBox;
-        private System.Windows.Forms.Button ShowFavButton;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button ShowAll;
+        private System.Windows.Forms.Button SaveList;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button button1;
     }
 }
 

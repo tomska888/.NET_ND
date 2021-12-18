@@ -18,7 +18,8 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         private CatDataService _catService;
-        private string _catImageId; 
+        private string _catImageId;
+        private string _catSubId;
 
         public Form1()
         {
@@ -29,15 +30,16 @@ namespace WindowsFormsApp1
 
         private async void button2_ClickAsync(object sender, EventArgs e)
         {
-            if(_catImageId != null)
+            if (_catImageId == null)
             {
-                await _catService.SaveFavorites(_catImageId);
-                MessageBox.Show("Image saved to favourites!");
+                MessageBox.Show("There is no image!");
             }
             else
             {
-                MessageBox.Show("No image!");
+                await _catService.SaveFavorites(_catImageId, _catSubId);
+                MessageBox.Show("Image saved!");
             }
+            
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -84,6 +86,39 @@ namespace WindowsFormsApp1
 
         private void ShowFavButton_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private async void ShowAll_ClickAsync(object sender, EventArgs e)
+        {
+            var catDataList = await _catService.GetBreedList();
+            dataGridView1.DataSource = catDataList;
+        }
+
+        private void SaveList_Click(object sender, EventArgs e)
+        {
+            TextWriter writer = new StreamWriter(@"C:\Users\zioma\Desktop\CatsInfo.txt");
+            if (dataGridView1 == null)
+            {
+                MessageBox.Show("There is no data!");
+            }
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                {
+                    writer.Write("\t" + dataGridView1.Rows[i].Cells[j].Value?.ToString() + "\t" + "|");
+                }
+                writer.WriteLine("");
+                writer.WriteLine("------------------------------------------------------------");
+            }
+            writer.Close();
+            MessageBox.Show("Data Exported");
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            var catShowFav = await _catService.GetFavourites();
+            dataGridView2.DataSource = catShowFav;
         }
     }
 }

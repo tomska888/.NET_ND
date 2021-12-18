@@ -44,24 +44,25 @@ namespace CatProvider
             return JsonConvert.DeserializeObject<List<Image>>(json);
         }
 
-        public async Task SaveFavorites(string imageId)
+        public async Task SaveFavorites(string imageId, string subId)
         {
             Uri.Path = "v1/favourites";
             var model = new Favourite();
             model.ImageId = imageId;
+            model.SubId = "your-user-1234";
 
             var serializedModel = JsonConvert.SerializeObject(model);
 
             var httpContent = new StringContent(serializedModel, System.Text.Encoding.UTF8, "application/json");
 
             var response = await _httpClient.PostAsync(Uri.ToString(), httpContent);
-            //response.EnsureSuccessStatusCode();
+            response.EnsureSuccessStatusCode();
         }
 
-        public async Task<List<Favourite>> GetFavourites(string subId)
+        public async Task<List<Favourite>> GetFavourites()
         {
             Uri.Path = "v1/favourites";
-            Uri.Query = $"sub_id={subId}";
+            Uri.Query = $"";
 
             var response = await _httpClient.GetAsync(Uri.ToString());
             response.EnsureSuccessStatusCode();
@@ -70,10 +71,10 @@ namespace CatProvider
             return JsonConvert.DeserializeObject<List<Favourite>>(json);
         }
 
-        public async Task<List<Breed>> GetBreedList(int page, int limit)
+        public async Task<List<Breed>> GetBreedList()
         {
             Uri.Path = "v1/breeds";
-            Uri.Query = $"limit={limit}&page={page}";
+            Uri.Query = $"";
 
             var response = await _httpClient.GetAsync(Uri.ToString());
             response.EnsureSuccessStatusCode();
