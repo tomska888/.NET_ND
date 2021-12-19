@@ -114,6 +114,8 @@ namespace WindowsFormsApp1
         {
             var catShowFav = await _catService.GetFavourites();
             dataGridView2.DataSource = catShowFav;
+
+            SetHyperLinkOnGrid();
         }
 
         private DataGridViewCellStyle GetHyperLinkStyleForGridCell()
@@ -133,6 +135,11 @@ namespace WindowsFormsApp1
             {
                 dataGridView1.Columns["WikipediaUrl"].DefaultCellStyle = GetHyperLinkStyleForGridCell();
             }
+
+            if (dataGridView2.Columns.Contains("ImageId"))
+            {
+                dataGridView2.Columns["ImageId"].DefaultCellStyle = GetHyperLinkStyleForGridCell();
+            }
         }
 
         private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -143,6 +150,18 @@ namespace WindowsFormsApp1
                 if (!String.IsNullOrWhiteSpace(dataGridView1.CurrentCell.EditedFormattedValue.ToString()))
                 {
                     System.Diagnostics.Process.Start("" + dataGridView1.CurrentCell.EditedFormattedValue);
+                }
+            }
+        }
+
+        private void dgv2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (dataGridView2.Columns[dataGridView2.CurrentCell.ColumnIndex].HeaderText.Contains("ImageId"))
+            {
+                if (!String.IsNullOrWhiteSpace(dataGridView2.CurrentCell.EditedFormattedValue.ToString()))
+                {
+                    System.Diagnostics.Process.Start("https://cdn2.thecatapi.com/images/" + dataGridView2.CurrentCell.EditedFormattedValue +".jpg");
                 }
             }
         }

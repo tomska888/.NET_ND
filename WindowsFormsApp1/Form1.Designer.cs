@@ -209,7 +209,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(11, 32);
+            this.SaveButton.Location = new System.Drawing.Point(231, 34);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(160, 23);
             this.SaveButton.TabIndex = 11;
@@ -323,6 +323,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(731, 103);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(762, 317);
             this.dataGridView1.TabIndex = 24;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
@@ -351,14 +352,16 @@
             // 
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(17, 74);
+            this.dataGridView2.Location = new System.Drawing.Point(129, 74);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(321, 439);
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.Size = new System.Drawing.Size(161, 439);
             this.dataGridView2.TabIndex = 27;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv2_CellContentClick);
             // 
             // ShowFavButton
             // 
-            this.ShowFavButton.Location = new System.Drawing.Point(17, 34);
+            this.ShowFavButton.Location = new System.Drawing.Point(159, 34);
             this.ShowFavButton.Name = "ShowFavButton";
             this.ShowFavButton.Size = new System.Drawing.Size(102, 23);
             this.ShowFavButton.TabIndex = 29;
