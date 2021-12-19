@@ -44,12 +44,11 @@ namespace CatProvider
             return JsonConvert.DeserializeObject<List<Image>>(json);
         }
 
-        public async Task SaveFavorites(string imageId, string subId)
+        public async Task SaveFavorites(string imageId)
         {
             Uri.Path = "v1/favourites";
             var model = new Favourite();
             model.ImageId = imageId;
-            model.SubId = "your-user-1234";
 
             var serializedModel = JsonConvert.SerializeObject(model);
 

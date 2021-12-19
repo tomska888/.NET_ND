@@ -19,7 +19,6 @@ namespace WindowsFormsApp1
     {
         private CatDataService _catService;
         private string _catImageId;
-        private string _catSubId;
 
         public Form1()
         {
@@ -36,7 +35,7 @@ namespace WindowsFormsApp1
             }
             else
             {
-                await _catService.SaveFavorites(_catImageId, _catSubId);
+                await _catService.SaveFavorites(_catImageId);
                 MessageBox.Show("Image saved!");
             }
         }
@@ -87,6 +86,8 @@ namespace WindowsFormsApp1
         {
             var catDataList = await _catService.GetBreedList();
             dataGridView1.DataSource = catDataList;
+
+            SetHyperLinkOnGrid();
         }
 
         private void SaveList_Click(object sender, EventArgs e)
@@ -113,6 +114,37 @@ namespace WindowsFormsApp1
         {
             var catShowFav = await _catService.GetFavourites();
             dataGridView2.DataSource = catShowFav;
+        }
+
+        private DataGridViewCellStyle GetHyperLinkStyleForGridCell()
+        {
+            {
+                DataGridViewCellStyle test = new DataGridViewCellStyle();
+                System.Drawing.Font l_objFont = new System.Drawing.Font(FontFamily.GenericSansSerif, 8, FontStyle.Underline);
+                test.Font = l_objFont;
+                test.ForeColor = Color.Blue;
+                return test;
+            }
+        }
+
+        private void SetHyperLinkOnGrid()
+        {
+            if (dataGridView1.Columns.Contains("WikipediaUrl"))
+            {
+                dataGridView1.Columns["WikipediaUrl"].DefaultCellStyle = GetHyperLinkStyleForGridCell();
+            }
+        }
+
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].HeaderText.Contains("WikipediaUrl"))
+            {
+                if (!String.IsNullOrWhiteSpace(dataGridView1.CurrentCell.EditedFormattedValue.ToString()))
+                {
+                    System.Diagnostics.Process.Start("" + dataGridView1.CurrentCell.EditedFormattedValue);
+                }
+            }
         }
     }
 }

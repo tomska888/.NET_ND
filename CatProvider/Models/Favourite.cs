@@ -6,7 +6,5 @@ namespace CatProvider.Models
     {
         [JsonProperty("image_id")]
         public string ImageId { get; set; }   
-        [JsonProperty("sub_id")]
-        public string SubId { get; set; }
     }
 }
