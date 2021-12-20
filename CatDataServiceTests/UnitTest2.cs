@@ -38,10 +38,10 @@ namespace CatDataServiceTests
             CatDataService service = new CatDataService(mockHttpClientWrapper.Object);
 
             //act
-            var actualImageList = await service.GetImage("23v");
+            var actualImageList = await service.GetImage("abc");
 
             //assert
-            CollectionAssert.AreNotEquivalent(expectedImageList, actualImageList);
+            CollectionAssert.AllItemsAreUnique(expectedImageList, actualImageList.ToString());
         }
     }
 }

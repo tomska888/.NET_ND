@@ -21,9 +21,9 @@ namespace ConsoleApp1
             var catService = new CatDataService(httpClient);
             var BreedsList = await catService.GetBreedList();
             var SreachBreedsList = await catService.GetBreedSearch("a");
-            var Image = await catService.GetImage("0j7EpepFB");
+            var Image = await catService.GetImage("thumb");
             //var Category = await catService.GetCategory(1, 2);
-            var SaveFav = catService.SaveFavorites("0j7EpepFB", "test1");
+            var SaveFav = catService.SaveFavorites("0j7EpepFB");
             var Favourites = await catService.GetFavourites();
         }
     }

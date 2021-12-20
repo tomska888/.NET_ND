@@ -19,10 +19,10 @@ namespace CatDataServiceTests
             //arrange
             var expectedFavouritesList = new List<Favourite>
     {
-        new Favourite() { ImageId="b9c", SubId="demo-252474"},
-        new Favourite() { ImageId="MjA3NTE1MA", SubId="test"},
-        new Favourite() { ImageId="6cs", SubId="demo-440b14"},
-        new Favourite() { ImageId="MjA3MjI3Mw", SubId="demo-981cfd"},
+        new Favourite() { ImageId="b9c"},
+        new Favourite() { ImageId="MjA3NTE1MA"},
+        new Favourite() { ImageId="6cs"},
+        new Favourite() { ImageId="MjA3MjI3Mw"},
     };
             var json = JsonConvert.SerializeObject(expectedFavouritesList);
 
@@ -37,10 +37,10 @@ namespace CatDataServiceTests
             CatDataService service = new CatDataService(mockHttpClientWrapper.Object);
 
             //act
-            var actualFavouritesList = await service.GetFavourites("1");
+            var actualFavouritesList = await service.GetFavourites();
 
             //assert
-            CollectionAssert.AreNotEquivalent(expectedFavouritesList, actualFavouritesList);
+            CollectionAssert.Contains(expectedFavouritesList, actualFavouritesList);
         }
     }
 }

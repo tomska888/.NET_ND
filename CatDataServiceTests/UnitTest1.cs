@@ -18,8 +18,8 @@ namespace CatDataServiceTests
         {
             //arrange
             var expectedBreedList = new List<Breed>
-    {
-        new Breed() { Id="abys",
+            {
+                new Breed() { Id="abys",
             Description="The Abyssinian is easy to care for, and a joy to have in your home. " +
             "They’re affectionate cats and love both people and other animals.",
             LifeSpan="14 - 15",
@@ -45,17 +45,18 @@ namespace CatDataServiceTests
             Origin="United States",
             Temperament="Intelligent, Interactive, Lively, Playful, Sensitive",
             WikipediaUrl="https://en.wikipedia.org/wiki/American_Bobtail"},
-        new Breed() { Id="acur",
-            Description="Distinguished by truly unique ears that curl back in a graceful arc, offering an alert, " +
-            "perky, happily surprised expression, they cause people to break out into a big smile when viewing their first Curl. " +
-            "Curls are very people-oriented, faithful, affectionate soulmates, adjusting remarkably fast to other pets, children, " +
-            "and new situations.",
-            LifeSpan="12 - 16",
+        new Breed() { Id="amau",
+            Description="rabian Mau cats are social and energetic. Due to their energy levels, " +
+            "these cats do best in homes where their owners will be able to provide them with plenty " +
+            "of playtime, attention and interaction from their owners. These kitties are friendly, " +
+            "intelligent, and adaptable, and will even get along well with other pets and children.",
+            LifeSpan="12 - 14",
             Name="American Curl",
-            Origin="United States",
-            Temperament="Affectionate, Curious, Intelligent, Interactive, Lively, Playful, Social",
-            WikipediaUrl="https://en.wikipedia.org/wiki/American_Curl"},
-    };
+            Origin="United Arab Emirates",
+            Temperament="Affectionate, Agile, Curious, Independent, Playful, Loyal",
+            WikipediaUrl="https://en.wikipedia.org/wiki/Arabian_Mau"},
+            };
+
             var json = JsonConvert.SerializeObject(expectedBreedList);
 
             HttpResponseMessage httpResponse = new HttpResponseMessage();
@@ -69,10 +70,10 @@ namespace CatDataServiceTests
             CatDataService service = new CatDataService(mockHttpClientWrapper.Object);
 
             //act
-            //var actualBreedList = await service.GetBreedSearch("abys");
+            var actualBreedList = await service.GetBreedSearch("beng");
 
             //assert
-            CollectionAssert.AllItemsAreUnique(expectedBreedList);
+            CollectionAssert.AreEquivalent(expectedBreedList, actualBreedList);
         }
     }
 }
